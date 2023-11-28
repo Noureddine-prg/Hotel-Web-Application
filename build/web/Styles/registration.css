@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.main-container {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; 
+}
+
+.registration-form, .right-container {
+    flex: 1; 
+}
+
+.registration-form {
+    padding: 20px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="tel"],
+.form-group button {
+    width: 90%;
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.form-group button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #0056b3;
+}
+
+.right-container img {
+    width: 100%; 
+    height: auto;
+    padding: 20px;
+}
