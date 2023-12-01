@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS HotelDB;
 CREATE DATABASE HotelDB;
 USE HotelDB;
 
-CREATE TABLE users (
+CREATE TABLE users(
     userId INT AUTO_INCREMENT PRIMARY KEY,
     fullName VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -12,4 +12,22 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE employees(
+    employeeID INT PRIMARY KEY,
+    jobTitle VARCHAR(255) NOT NULL,
+    fullName VARCHAR(255) NOT NULL, 
+    email VARCHAR(255) NOT NULL UNIQUE,
+    passwordHash VARCHAR(255) NOT NULL,
+    phoneNumber VARCHAR(255),
+    isAdmin BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
+CREATE TABLE hotelRooms(
+    roomNumber INT PRIMARY KEY,
+    bedType ENUM('KING','QUEEN','FULL', 'TWIN'),
+    bedCount INT,
+    assignedCleaner VARCHAR(255),
+    availability ENUM('AVAILABLE','UNAVAILABLE'),
+    currentGuest VARCHAR(255) DEFAULT NULL
+);

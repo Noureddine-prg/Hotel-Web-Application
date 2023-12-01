@@ -1,8 +1,5 @@
 package com.sidiabed.hotelservice.DBSupport;
 
-import com.sidiabed.hotelservice.Utility.PasswordHash;
-import jakarta.servlet.RequestDispatcher;
-import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 import java.sql.*;  
 

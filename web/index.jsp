@@ -1,6 +1,6 @@
 <% 
     if(session.getAttribute("name") == null){
-        response.sendRedirect("registration.jsp");
+        response.sendRedirect("login.jsp");
     }
 %>
 
@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello this is the index page.</h1>
+        <h1>Welcome, <%= session.getAttribute("name") %></h1>
     </body>
 </html>
 
@@ -20,7 +20,7 @@
 
 First Hurdle: (1 Week Timeline) start day: Nov, 22
 
-Login Page/Register Page || Add check admin option  -> Index(Home)  
+Login Page/Register Page -> Index(Home)  
 
 -->
 
