@@ -32,9 +32,9 @@ public class LoginServlet extends HttpServlet{
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelDB","root","password");
             
-            //Selecting emails & passwords from user and employee tables.
+            //Selecting emails & passwords from guest and employee tables.
             PreparedStatement pst = conn.prepareStatement(    
-                "SELECT email, fullName, passwordHash FROM users WHERE email = ? AND passwordHash = ? " +
+                "SELECT email, fullName, passwordHash FROM guests WHERE email = ? AND passwordHash = ? " +
                 "UNION " +
                 "SELECT email, fullName, passwordHash FROM employees WHERE email = ? AND passwordHash = ?"
             );
@@ -49,13 +49,13 @@ public class LoginServlet extends HttpServlet{
             if(rs.next()){
                 //session obj value being set
                 session.setAttribute("name", rs.getString("fullName"));
+                session.setAttribute("email", rs.getString("email"));
                 dispatcher = request.getRequestDispatcher("index.jsp");
-                //dispatcher.forward(request, response);
                 response.sendRedirect("index.jsp"); 
            
             }else{
                 request.setAttribute("status","failed");
-                dispatcher = request.getRequestDispatcher("registration.jsp");
+                dispatcher = request.getRequestDispatcher("register.jsp");
             }
             
         }catch (Exception e) {

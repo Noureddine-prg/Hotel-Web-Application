@@ -31,13 +31,12 @@ public class RegistrationServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelDB","root","password");
-            PreparedStatement pst = conn.prepareStatement("INSERT INTO Users (fullName, email, passwordHash, phoneNumber, isAdmin) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO guests (fullName, email, passwordHash, phoneNumber) VALUES (?, ?, ?, ?)");
             
             pst.setString(1, name);
             pst.setString(2, email);
             pst.setString(3, PasswordHash.hashPassword(password));
             pst.setString(4, contact);
-            pst.setBoolean(5, false);
             
             int rowCount = pst.executeUpdate();
                         
@@ -46,7 +45,7 @@ public class RegistrationServlet extends HttpServlet {
                 response.sendRedirect("login.jsp"); 
             } else {
                 request.setAttribute("status", "failure");
-                dispatcher = request.getRequestDispatcher("registration.jsp");
+                dispatcher = request.getRequestDispatcher("register.jsp");
                 dispatcher.forward(request, response);
             }
                

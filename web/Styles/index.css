@@ -1,0 +1,53 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar_links {
+    list-style-type: none;
+}
+
+.navbar_links li {
+    display: inline;
+    margin-left: 20px;
+    font-size: 18px;
+}
+.hero {
+    text-align: center;
+    padding: 50px;
+    background-color: #e6e7e8;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+    
+.hero p {
+    font-size: 24px;
+    color: #333;
+}
+    
+.footer {
+    background-color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
