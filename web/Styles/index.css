@@ -20,13 +20,17 @@ body {
 
 .navbar_links {
     list-style-type: none;
+    
 }
+
 
 .navbar_links li {
     display: inline;
     margin-left: 20px;
     font-size: 18px;
+
 }
+
 .hero {
     text-align: center;
     padding: 50px;

@@ -20,7 +20,6 @@
 <div class="split_left left">
     <div class="left-centered">
         <h2>Have an account already?</h2>
-        <p>Welcome back!</p>
         <button onclick="redirectToLogin()" class="btn">Sign In</button>
     </div>
 </div>

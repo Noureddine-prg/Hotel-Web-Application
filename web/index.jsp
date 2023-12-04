@@ -15,18 +15,21 @@
     
     <body>
         <div class="navbar">
-            <div class="logo">HotelName</div>
-                <ul class="navbar_links">
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Contact</li>
-                    <li>Logout</li>
-                </ul>
+            <div class="logo">Hotel</div>
+            <ul class="navbar_links">
+                <li> Home </li>
+                <li>Admin Panel</li>
+                <li>Book Room</li>
+                <li>Cart</li>
+                <li>
+                    <a href="logout" class="logout">Logout</a>
+                </li>
+            </ul>
         </div>
         
         <div class="hero">
             <h1>Welcome, <span id="username"></span><%= session.getAttribute("name")%></h1>
-            <p>Discover your perfect stay at our hotel.</p>
+            <p>Discover your stay at our hotel.</p>
         </div>
 
         

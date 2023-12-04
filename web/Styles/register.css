@@ -4,6 +4,7 @@ body, html {
     margin: 0;
     font-family: Arial, sans-serif;
     display: flex; 
+    background-color: #222E44;
 }
 
 .split_left{
@@ -14,11 +15,14 @@ body, html {
     justify-content: center; 
     z-index: 1;
     overflow-x: hidden;
+    background: url('../Images/Register1.webp') no-repeat center center fixed; 
+
+    
 }
 
 .split_right{
     height: 100%;
-    width:60%;
+    width: 60%;
     display: flex;
     align-items: center; 
     justify-content: center; 
@@ -27,12 +31,13 @@ body, html {
 }
 
 .left {
-    background-color: #1B50BA;
+    background-color: white;
+    border-radius: 0 20px 20px 0;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .right {
     background-color: #222E44;
-
 }
 
 .left-centered {
@@ -41,10 +46,11 @@ body, html {
     align-items: center;
     justify-content: center; 
     text-align: center;
-    width: 80%;
-    height: 40%; 
-    background-color: white;
+    width: 60%;
+    height: 20%; 
     border-radius: 20px;
+    background-color: white;
+    padding: 15px;
 }
 .left-centered p{
     margin-bottom: 50px;
@@ -59,10 +65,11 @@ body, html {
     width: 60%; 
     background-color: white;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .label {
-    align-self: flex-start;
+    text-align: left;
     padding-left: 10%; 
 }
 
@@ -74,13 +81,7 @@ body, html {
     justify-content: center;
 }
 
-.left .centered {
-    border-radius: 10px;
-    padding: 20px;
-    width: 60%;
-    height: 300px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-}
+
 
 h1 {
     font-size: 50px;
@@ -114,6 +115,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
     width: 150px; 
     opacity: 0.9;
     margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 .btn:hover {
