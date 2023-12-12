@@ -6,6 +6,7 @@ public abstract class User {
     private String email;
     private String passwordHash;
     private String phoneNumber;
+    private String roomsBooked;
 
     public User(String fullName, String email, String passwordHash, String phoneNumber) {
         this.fullName = fullName;

@@ -14,7 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-//API Route
 @WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {
     

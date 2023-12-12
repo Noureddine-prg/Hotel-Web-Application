@@ -13,6 +13,8 @@ public enum RoomType {
     private final String description;
     private final String bedType;
 
+    
+    
     RoomType(int pricePerNight, int bedCount, String description, String bedType) {
         this.pricePerNight = pricePerNight;
         this.bedCount = bedCount;

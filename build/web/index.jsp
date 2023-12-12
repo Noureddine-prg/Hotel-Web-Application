@@ -18,7 +18,9 @@
             <div class="logo">Hotel</div>
             <ul class="navbar_links">
                 <li> Home </li>
-                <li>Admin Panel</li>
+                <li>
+                    <a href="adminpanel.jsp" class="">Admin Panel</a>
+                </li>
                 <li>Book Room</li>
                 <li>Cart</li>
                 <li>
@@ -34,18 +36,10 @@
 
         
         <div class="footer">
-            <p>&copy; 2023 HotelName. All rights reserved.</p>
+            <p>&copy; 2023 Hotel. All rights reserved.</p>
         </div>
 </body>
 </html>
 
 
-<!--
 
-First Hurdle: (1 Week Timeline) start day: Nov, 22
-
-Login Page/Register Page -> Index(Home)  
-
-Done Dec. 2
-
--->

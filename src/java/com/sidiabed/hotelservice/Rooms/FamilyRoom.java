@@ -8,7 +8,5 @@ public class FamilyRoom extends Room {
     public FamilyRoom(){
         super(GenerateRoomNumber.generate(RoomType.FAMILY_ROOM),RoomType.FAMILY_ROOM);
     }
-    
-    @Override
-    public void bookRoom(){}
+
 }

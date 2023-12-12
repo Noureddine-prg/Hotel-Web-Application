@@ -9,7 +9,4 @@ public class StandardRoom extends Room {
         super(GenerateRoomNumber.generate(RoomType.STANDARD),RoomType.STANDARD);
     }
     
-    @Override
-    public void bookRoom(){}
-    
 }

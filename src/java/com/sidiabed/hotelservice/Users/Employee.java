@@ -2,6 +2,7 @@ package com.sidiabed.hotelservice.Users;
 
 import com.sidiabed.hotelservice.DBSupport.DBSupport;
 import com.sidiabed.hotelservice.Enums.HotelJob;
+import com.sidiabed.hotelservice.Utility.GenerateUserID;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -13,9 +14,9 @@ public class Employee extends User {
     private HotelJob jobTitle;
     private boolean isAdmin;
 
-    public Employee(String employeeID, HotelJob jobTitle, boolean isAdmin, String fullName, String email, String passwordHash, String phoneNumber) {
+    public Employee(HotelJob jobTitle, String fullName, String email, String passwordHash, String phoneNumber) {
         super(fullName, email, passwordHash, phoneNumber);
-        this.employeeID = employeeID;
+        this.employeeID = GenerateUserID.generateEmployeeID();;
         this.jobTitle = jobTitle;
         this.isAdmin = isAdmin;
     }
@@ -36,8 +37,10 @@ public class Employee extends User {
             pst.setString(6, this.getPhoneNumber());
             pst.setBoolean(7, this.isAdmin);
             
+             pst.executeUpdate();
+            
         }   catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Error inserting employee: " + e.getMessage());
+            System.out.println("Error creating employee: " + e.getMessage());
         }
         
     }

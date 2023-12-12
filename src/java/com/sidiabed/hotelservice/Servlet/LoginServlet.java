@@ -20,7 +20,6 @@ public class LoginServlet extends HttpServlet{
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        System.out.println("In login servlet");
         
         RequestDispatcher dispatcher = null;
         Connection conn = null;
@@ -50,13 +49,13 @@ public class LoginServlet extends HttpServlet{
                 //session obj value being set
                 session.setAttribute("name", rs.getString("fullName"));
                 session.setAttribute("email", rs.getString("email"));
-                dispatcher = request.getRequestDispatcher("index.jsp");
                 response.sendRedirect("index.jsp"); 
-           
-            }else{
+            } else {
                 request.setAttribute("status","failed");
-                dispatcher = request.getRequestDispatcher("register.jsp");
+                dispatcher = request.getRequestDispatcher("login.jsp");
+                dispatcher.forward(request, response); 
             }
+
             
         }catch (Exception e) {
             e.printStackTrace();

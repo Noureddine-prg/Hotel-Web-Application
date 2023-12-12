@@ -7,10 +7,6 @@ public class PresidentialSuite extends Room {
     
     public PresidentialSuite(){
         super(GenerateRoomNumber.generate(RoomType.PRESIDENTIAL_SUITE),RoomType.PRESIDENTIAL_SUITE);
-    }
-    
-    @Override
-    public void bookRoom(){}
-    
+    }    
     
 }
