@@ -1,15 +1,20 @@
 package com.sidiabed.hotelservice.Factories;
 
-import com.sidiabed.hotelservice.Enums.HotelJob;
+import com.sidiabed.hotelservice.Enum.HotelJob;
 import com.sidiabed.hotelservice.Users.Employee;
 import com.sidiabed.hotelservice.Users.Guest;
 
 public class UserFactory {
 
-    public Employee createEmployee(HotelJob jobTitle, boolean isAdmin, String fullName, String email, String passwordHash, String phoneNumber) {
+    public Employee createEmployee(HotelJob jobTitle, String fullName, String email, String passwordHash, String phoneNumber) {
         Employee em = new Employee(jobTitle, fullName, email, passwordHash, phoneNumber);
         
-        em.toSql();
+        return em;
+    }
+    
+    public Employee createAdminEmployee(HotelJob jobTitle, String fullName, String email, String passwordHash, String phoneNumber){
+        Employee em = new Employee(jobTitle, fullName, email, passwordHash, phoneNumber);
+        em.setIsAdmin(true);
         
         return em;
     }
@@ -19,4 +24,6 @@ public class UserFactory {
         
         return gu;
     }
+    
+    
 }

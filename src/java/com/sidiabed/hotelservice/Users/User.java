@@ -47,5 +47,4 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
     }
     
-    public abstract void toSql();
 }

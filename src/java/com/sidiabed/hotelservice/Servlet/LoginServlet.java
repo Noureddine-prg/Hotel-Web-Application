@@ -1,5 +1,6 @@
 package com.sidiabed.hotelservice.Servlet;
 
+
 import com.sidiabed.hotelservice.Utility.PasswordHash;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -20,7 +21,7 @@ public class LoginServlet extends HttpServlet{
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        
+                
         RequestDispatcher dispatcher = null;
         Connection conn = null;
         String email = request.getParameter("email");

@@ -14,4 +14,3 @@ function showSection(sectionId) {
 }
 
 document.getElementById('dashboardBtn').classList.add('active');
-

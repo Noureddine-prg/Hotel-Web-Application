@@ -1,6 +1,6 @@
 package com.sidiabed.hotelservice.Utility;
 
-import com.sidiabed.hotelservice.Enums.RoomType;
+import com.sidiabed.hotelservice.Enum.RoomType;
 
 public class GenerateRoomNumber {
 

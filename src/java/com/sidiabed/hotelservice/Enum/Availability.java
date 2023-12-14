@@ -1,5 +1,5 @@
 
-package com.sidiabed.hotelservice.Enums;
+package com.sidiabed.hotelservice.Enum;
 
 public enum Availability {
     AVAILABLE, UNAVAILABLE

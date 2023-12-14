@@ -23,7 +23,7 @@ public class Guest extends User {
         this.guestID = guestID;
     }
 
-    @Override
+ 
     public void toSql() {
         String sql = "INSERT INTO guests (guestID, fullName, email, passwordHash, phoneNumber) VALUES (?, ?, ?, ?, ?)";
         

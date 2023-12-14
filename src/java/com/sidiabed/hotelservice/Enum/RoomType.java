@@ -1,4 +1,4 @@
-package com.sidiabed.hotelservice.Enums;
+package com.sidiabed.hotelservice.Enum;
 
 public enum RoomType {
     STANDARD(100, 1, "A cozy room with a single bed, ideal for solo travelers.", "TWIN"),

@@ -8,7 +8,7 @@ public class HotelRoomFactory {
         
         // Make new Room. 
         DeluxeRoom deluxeRoom = new DeluxeRoom();
-        
+       
         //Store to DB
         try {
             deluxeRoom.toSql();
