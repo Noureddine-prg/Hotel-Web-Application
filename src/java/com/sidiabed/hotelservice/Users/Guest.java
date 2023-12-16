@@ -14,6 +14,11 @@ public class Guest extends User {
         super(fullName, email, passwordHash, phoneNumber);
         this.guestID = GenerateUserID.generateGuestID();
     }
+    
+    public Guest(String guestID, String fullName, String email, String passwordHash, String phoneNumber) {
+        super(fullName, email, passwordHash, phoneNumber);
+        this.guestID = GenerateUserID.generateGuestID();
+    }
 
     public String getGuestID() {
         return guestID;

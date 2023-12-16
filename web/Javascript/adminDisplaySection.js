@@ -16,7 +16,6 @@ function updateUI(sectionId) {
 }
 
 async function fetchEmployeeData(sectionId) {
-    if (sectionId === 'employees') {
         const options = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json;' },
@@ -30,28 +29,12 @@ async function fetchEmployeeData(sectionId) {
             console.error('Error fetching data:', error);
             // Error handling logic
         }
-    }
 }
 
-async function deleteEmployee(employeeId) {
-    console.log("trying to delete")
-    const options = {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
 
-    try {
-        const result = await fetch(`/employee?employeeId=${employeeId}`, options);
-        console.log(result);
-    } catch (error) {
-        console.error('Network error:', error);
-    }
-}
 
 
 function showSection(sectionId) {
-    updateUI(sectionId);
     fetchEmployeeData(sectionId);
+    updateUI(sectionId);
 }

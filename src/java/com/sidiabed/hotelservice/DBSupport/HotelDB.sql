@@ -25,7 +25,7 @@ CREATE TABLE employees (
 );
 
 CREATE TABLE guests (
-    guestID INT AUTO_INCREMENT PRIMARY KEY,
+    guestID VARCHAR(255) PRIMARY KEY,
     fullName VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     passwordHash VARCHAR(255) NOT NULL,

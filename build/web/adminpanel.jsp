@@ -31,10 +31,12 @@
            
             
             <div id="dashboard" class="content">Dashboard</div>
-            <div id="rooms" class="content" style="display:none;">Rooms</div>
             
+            <!-- Rooms Section -->
+            <div id="rooms" class="content" style="display:none;">Rooms</div>
+                      
+            <!-- Employee Section -->
             <div id="employees" class="content" style="display:none;">
-                Employees
                 <a href="createEmployee.jsp">Create New Employee</a>
 
                 <div class="table-container">
@@ -49,7 +51,6 @@
                             <th>Actions</th>
                         </tr>
 
-                        <%System.out.println(request.getSession().getAttribute("employees"));%>
                         <c:forEach items="${employees}" var="employee">
                             <tr>
                                 <td>${employee.employeeID}</td>
@@ -58,16 +59,26 @@
                                 <td>${employee.email}</td>
                                 <td>${employee.phoneNumber}</td>
                                 <td>${employee.isAdmin}</td>
-                                <td><a href="employee-update?employeeId=${employee.employeeID}">Edit</a></td>                               
-                                <td><a href="#" onclick="deleteEmployee('${employee.employeeID}')">Delete</a>
-</td>
+                                <td><a href="${pageContext.request.contextPath}/employee-get?action=employee-get&employeeId=${employee.employeeID}">Edit</a></td>                        
+                                
+                                <td>
+                                    
+                                <form action="employee-delete" method="post">
+                                    <input type="hidden" name="employeeId" value="${employee.employeeID}">
+                                    <input type="hidden" name="action" value="delete">
+                                    <button type="submit">Delete</button>
+                                </form>
+                                </td>
                             </tr>
                         </c:forEach>
                     </table>
                 </div>
             </div>
-                
+            
+            <!-- Guest Section -->
             <div id="guests" class="content" style="display:none;">Guests</div>
+            
+            <!-- Transaction Section -->
             <div id="transactions" class="content" style="display:none;">Transactions</div>
         </div>
         <script src="./Javascript/adminDisplaySection.js"></script>

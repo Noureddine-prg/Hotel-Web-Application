@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author noureddine
  * 
- * Employee CRUD operations
+ * Employee CRUD and DB operations 
  */
 public class EmployeeDAO {
         
@@ -39,13 +39,6 @@ public class EmployeeDAO {
         }   catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error creating employee: " + e.getMessage());
         }       
-    }
-    
-    public Employee getEmployee(String employeeID){
-        
-        
-        
-        return null;
     }
     
     public List<Employee> getAllEmployees(){
@@ -76,14 +69,60 @@ public class EmployeeDAO {
         } catch (Exception e) {
         }
         
-                System.out.println(employees);
-        
+                System.out.println(employees);        
         return employees;
     }
     
-    public void updateEmployee(Employee employee){
-        
+    public Employee getSpecificEmployee(String employeeId) throws SQLException, ClassNotFoundException {
+        String query = "SELECT * FROM employees WHERE employeeID = ?";
+        Employee employee = null;
+
+        try (Connection conn = DBSupport.establishConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            
+            pstmt.setString(1, employeeId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String fullName = rs.getString("fullName");
+                String email = rs.getString("email");
+                String passwordHash = rs.getString("passwordHash");
+                String phoneNumber = rs.getString("phoneNumber");
+                HotelJob jobTitle = HotelJob.valueOf(rs.getString("jobTitle"));
+                boolean isAdmin = rs.getBoolean("isAdmin");
+
+                employee = new Employee(employeeId, jobTitle, fullName, email, passwordHash, phoneNumber, isAdmin);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            System.out.println("Error fetching specific employee: " + e.getMessage());
+            throw e;
+        }
+        return employee;
     }
+    
+    public void updateEmployee(Employee employee) throws SQLException, ClassNotFoundException {
+        String query = "UPDATE employees SET jobTitle = ?, fullName = ?, email = ?, passwordHash = ?, phoneNumber = ?, isAdmin = ? WHERE employeeID = ?";
+
+        try (Connection conn = DBSupport.establishConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            
+            pstmt.setString(1, employee.getJobTitle().toString());
+            pstmt.setString(2, employee.getFullName());
+            pstmt.setString(3, employee.getEmail());
+            pstmt.setString(4, employee.getPasswordHash());
+            pstmt.setString(5, employee.getPhoneNumber());
+            pstmt.setBoolean(6, employee.isIsAdmin());
+            pstmt.setString(7, employee.getEmployeeID());
+
+            pstmt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            System.out.println("Error updating employee: " + e.getMessage());
+            // It's usually a good practice to rethrow the exception or handle it appropriately
+            throw e;
+        }
+    }
+    
+
     
     public void deleteEmployee(String employeeID) throws SQLException, ClassNotFoundException{
         String sql = "DELETE FROM employees WHERE employeeID = ?";

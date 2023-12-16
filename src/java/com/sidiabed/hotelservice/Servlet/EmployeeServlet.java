@@ -18,71 +18,118 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@WebServlet(urlPatterns = {"/employee", "/employee-create", "/employee-delete", "/employee-get", "/employee-edit"})
+public class EmployeeServlet extends HttpServlet {
 
-@WebServlet(urlPatterns = {"/employee"})
-public class EmployeeServlet extends HttpServlet{
-    
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
         
-        
-        String fullNameCreate = request.getParameter("fullName");
-        String emailCreate = request.getParameter("email");
-        String passwordCreate = request.getParameter("password");
-        String phoneNumberCreate = request.getParameter("phoneNumber");           
-        String jobTitleCreate = request.getParameter("jobTitle");
-             
-        // Create a new employee
-        UserFactory factoryCreate = new UserFactory();
-        Employee newEmployee = null;
-
-        try {
-            newEmployee = factoryCreate.createEmployee(HotelJob.valueOf(jobTitleCreate), fullNameCreate, emailCreate, PasswordHash.hashPassword(passwordCreate), phoneNumberCreate);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // Save the new employee to the database
-        EmployeeDAO employeeDAO = new EmployeeDAO();
-        employeeDAO.dbEmployee(newEmployee);
-                    
-        request.getSession().setAttribute("employee", employeeDAO.getAllEmployees());
-                    
-        // Redirect to the admin panel or confirmation page
-        response.sendRedirect("adminpanel.jsp");            
-    }
-    
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String employeeId = request.getParameter("employeeId");
-        
-        EmployeeDAO employeeDAO = new EmployeeDAO();
-        
-        try {
-            employeeDAO.deleteEmployee(employeeId);
-             response.sendRedirect("adminpanel.jsp");
-        } catch (SQLException ex) {
-            Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
-        System.out.println("Get method");
         String path = request.getServletPath();
-        
-        System.out.println(path);
         EmployeeDAO employeeDAO = new EmployeeDAO();
-        
-        //Add all employees from db into list
-        List<Employee> employees = employeeDAO.getAllEmployees();
-       
-        //allowing jsp page to interact with data
-        request.getSession().setAttribute("employees", employees);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/adminpanel.jsp");
-        dispatcher.forward(request, response);
-    }
-}
 
+        switch (path) {
+            case "/employee-create":
+                String fullNameCreate = request.getParameter("fullName");
+                String emailCreate = request.getParameter("email");
+                String passwordCreate = request.getParameter("password");
+                String phoneNumberCreate = request.getParameter("phoneNumber");
+                String jobTitleCreate = request.getParameter("jobTitle");
+
+                UserFactory factoryCreate = new UserFactory();
+                Employee newEmployee = null;
+
+                try {
+                    newEmployee = factoryCreate.createEmployee(HotelJob.valueOf(jobTitleCreate), fullNameCreate, emailCreate, PasswordHash.hashPassword(passwordCreate), phoneNumberCreate);
+                    employeeDAO.dbEmployee(newEmployee);
+                    response.sendRedirect("adminpanel.jsp");
+                } catch (NoSuchAlgorithmException ex) {
+                    Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error employee creation");
+                }
+                break;
+
+            case "/employee-delete":
+                String employeeId = request.getParameter("employeeId");
+                try {
+                    employeeDAO.deleteEmployee(employeeId);
+                    response.sendRedirect("adminpanel.jsp");
+                } catch (SQLException | ClassNotFoundException ex) {
+                    Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error employee deletion");
+                }
+                break;
+            case "/employee-edit":
+                    String eId = request.getParameter("employeeId");
+                    String fullName = request.getParameter("fullName");
+                    String email = request.getParameter("email");
+                    String password = request.getParameter("password");
+                    String phoneNumber = request.getParameter("phoneNumber");
+                    String jobTitle = request.getParameter("jobTitle");
+                    boolean isAdmin = request.getParameter("isAdmin") != null;
+                    
+                    Employee currentEmployee = null;
+            
+                    try {
+                        currentEmployee = new Employee(eId, HotelJob.valueOf(jobTitle), fullName, email, PasswordHash.hashPassword(password), phoneNumber, isAdmin);
+                    } catch (NoSuchAlgorithmException ex) {
+                        Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    {
+                        try {
+                            employeeDAO.updateEmployee(currentEmployee);
+                            response.sendRedirect("adminpanel.jsp");
+                            
+                        } catch (SQLException ex) {
+                            Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                break;
+
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String path = request.getServletPath();
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+
+                        
+        switch (path){
+            case "/employee":
+                List<Employee> employees = employeeDAO.getAllEmployees();
+                request.getSession().setAttribute("employees", employees);
+                response.sendRedirect("adminpanel.jsp");               
+                
+                break;
+            case "/employee-get":
+                System.out.println("We are now grabbing employee");
+
+                String employeeId = request.getParameter("employeeId");
+                
+                try {
+                    Employee employee = employeeDAO.getSpecificEmployee(employeeId);
+                    request.setAttribute("employeeToEdit", employee);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/editEmployee.jsp");
+                    dispatcher.forward(request, response);
+                } catch (SQLException ex) {
+                    Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/editEmployee.jsp");
+                dispatcher.forward(request, response); 
+                
+                break;
+
+            }
+        
+
+    }
+
+}
