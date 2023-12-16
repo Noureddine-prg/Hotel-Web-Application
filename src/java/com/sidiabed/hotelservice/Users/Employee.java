@@ -15,9 +15,16 @@ public class Employee extends User {
 
     public Employee(HotelJob jobTitle, String fullName, String email, String passwordHash, String phoneNumber) {
         super(fullName, email, passwordHash, phoneNumber);
-        this.employeeID = GenerateUserID.generateEmployeeID();;
+        this.employeeID = GenerateUserID.generateEmployeeID();
         this.jobTitle = jobTitle;
         this.isAdmin = false;
+    }
+    
+    public Employee(String employeeID, HotelJob jobTitle, String fullName, String email, String passwordHash, String phoneNumber, boolean isAdmin) {
+        super(fullName, email, passwordHash, phoneNumber);
+        this.employeeID = employeeID;
+        this.jobTitle = jobTitle;
+        this.isAdmin = isAdmin;
     }
 
     public String getEmployeeID() {
@@ -42,6 +49,18 @@ public class Employee extends User {
 
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
+    }
+    
+        @Override
+        public String toString() {
+        return "Employee{" +
+                "employeeID='" + this.employeeID + '\'' +
+                ", jobTitle=" + this.jobTitle +
+                ", fullName='" + this.getFullName() + '\'' +
+                ", email='" + this.getEmail() + '\'' +
+                ", phoneNumber='" + this.getPhoneNumber() + '\'' +
+                ", isAdmin=" + this.isIsAdmin() +
+                '}';
     }
         
 }

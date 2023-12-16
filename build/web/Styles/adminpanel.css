@@ -86,6 +86,7 @@ body, html {
     background-color: #20232a;
     padding: 10px 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
 }
 
 .page-title {
@@ -123,5 +124,49 @@ body, html {
 
     .page-title {
         font-size: 1.2em; 
+    }
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #3b4049;
+}
+
+th {
+    background-color: #32363f;
+    color: white;
+}
+
+td {
+    background-color: #3b4049;
+    color: #f1f1f1;
+}
+
+a {
+    color: #17a2b8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive table */
+@media (max-width: 600px) {
+    table {
+        display: block;
+        overflow-x: auto;
     }
 }
