@@ -113,8 +113,7 @@ public class EmployeeServlet extends HttpServlet {
                 try {
                     Employee employee = employeeDAO.getSpecificEmployee(employeeId);
                     request.setAttribute("employeeToEdit", employee);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/editEmployee.jsp");
-                    dispatcher.forward(request, response);
+                    response.sendRedirect("editEmployee.jsp");
                 } catch (SQLException ex) {
                     Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {
@@ -122,8 +121,6 @@ public class EmployeeServlet extends HttpServlet {
                 }
             
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/editEmployee.jsp");
-                dispatcher.forward(request, response); 
                 
                 break;
 
@@ -133,3 +130,5 @@ public class EmployeeServlet extends HttpServlet {
     }
 
 }
+
+

@@ -20,7 +20,7 @@ public class UserFactory {
     }
 
     public Guest createGuest(String fullName, String email, String passwordHash, String phoneNumber) {
-        Guest gu = new Guest(fullName, email, passwordHash, phoneNumber);    
+        Guest gu = new Guest(fullName, email, passwordHash, phoneNumber, null);    
         
         return gu;
     }

@@ -1,5 +1,6 @@
 package com.sidiabed.hotelservice.Servlet;
 
+import com.sidiabed.hotelservice.Users.Guest;
 import com.sidiabed.hotelservice.Utility.PasswordHash;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,7 +13,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 
 @WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {
@@ -28,14 +28,17 @@ public class RegistrationServlet extends HttpServlet {
         Connection conn = null;
          
         try {
+            Guest newGuest = new Guest(name, email, PasswordHash.hashPassword(password), contact, null);
+            
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelDB","root","password");
-            PreparedStatement pst = conn.prepareStatement("INSERT INTO guests (fullName, email, passwordHash, phoneNumber) VALUES (?, ?, ?, ?)");
             
-            pst.setString(1, name);
-            pst.setString(2, email);
-            pst.setString(3, PasswordHash.hashPassword(password));
-            pst.setString(4, contact);
+            PreparedStatement pst = conn.prepareStatement("INSERT INTO guests (guestID, fullName, email, passwordHash, phoneNumber) VALUES (?, ?, ?, ?, ?)");
+            pst.setString(1, newGuest.getGuestID());
+            pst.setString(2, name);
+            pst.setString(3, email);
+            pst.setString(4, newGuest.getPasswordHash());
+            pst.setString(5, contact);
             
             int rowCount = pst.executeUpdate();
                         
@@ -52,8 +55,11 @@ public class RegistrationServlet extends HttpServlet {
             e.printStackTrace();
         } finally {
             try {
-                conn.close();
+                if (conn != null) {
+                    conn.close();
+                }
             } catch (SQLException ex) {
+                ex.printStackTrace();
             }
         }
     }
@@ -64,6 +70,3 @@ public class RegistrationServlet extends HttpServlet {
     }
     
 }
-
-
-

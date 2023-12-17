@@ -12,7 +12,7 @@
             <h1>Edit Employee</h1>
             
                 <form action="employee-edit" method="post">
-                    Employee ID: <input type="text" name="employeeId" value="${employeeToEdit.employeeID}">
+                    Employee ID: <input type="text" name="employeeId" value="${employeeToEdit.employeeID}"readonly>
                     <input type="text" name="fullName" value="${employeeToEdit.fullName}"><br>
                     <input type="email" name="email" value="${employeeToEdit.email}"><br>
                     <input type="password" name="password" value="${employeeToEdit.passwordHash}">

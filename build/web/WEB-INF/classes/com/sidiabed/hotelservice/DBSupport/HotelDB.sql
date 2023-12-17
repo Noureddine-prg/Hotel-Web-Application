@@ -31,6 +31,5 @@ CREATE TABLE guests (
     passwordHash VARCHAR(255) NOT NULL,
     phoneNumber VARCHAR(255),
     roomBooked VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (roomBooked) REFERENCES hotelRooms(roomNumber)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

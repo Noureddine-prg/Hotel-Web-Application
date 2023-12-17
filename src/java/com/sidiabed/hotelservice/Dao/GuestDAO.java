@@ -12,7 +12,7 @@ import java.util.List;
 public class GuestDAO {
 
     public void dbGuest(Guest guest) {
-        String query = "INSERT INTO guests (guestID, fullName, email, passwordHash, phoneNumber) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO guests (guestID, fullName, email, passwordHash, phoneNumber, roomBooked) VALUES (?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = DBSupport.establishConnection();
              PreparedStatement pst = conn.prepareStatement(query)) {
@@ -22,8 +22,10 @@ public class GuestDAO {
             pst.setString(3, guest.getEmail());
             pst.setString(4, guest.getPasswordHash());
             pst.setString(5, guest.getPhoneNumber());
+            pst.setString(6, guest.getRoomBooked());  
             
             pst.executeUpdate();
+            
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error creating guest: " + e.getMessage());
         }       
@@ -32,6 +34,7 @@ public class GuestDAO {
     public List<Guest> getAllGuests() {
         List<Guest> guests = new ArrayList<>();
         String query = "SELECT * FROM guests";     
+        
         
         try (Connection conn = DBSupport.establishConnection();
              PreparedStatement pst = conn.prepareStatement(query);
@@ -43,10 +46,9 @@ public class GuestDAO {
                 String email = rs.getString("email");
                 String passwordHash = rs.getString("passwordHash");
                 String phoneNumber = rs.getString("phoneNumber");
+                String roomBooked = rs.getString("roomBooked");
                 
-                Guest guest = new Guest(fullName, email, passwordHash, phoneNumber);
-                guest.setGuestID(guestID);
-                
+                Guest guest = new Guest(guestID, fullName, email, passwordHash, phoneNumber, roomBooked);                
                 guests.add(guest);
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -70,9 +72,9 @@ public class GuestDAO {
                 String email = rs.getString("email");
                 String passwordHash = rs.getString("passwordHash");
                 String phoneNumber = rs.getString("phoneNumber");
+                String roomBooked = rs.getString("roomBooked");
 
-                guest = new Guest(fullName, email, passwordHash, phoneNumber);
-                guest.setGuestID(guestID);
+                guest = new Guest(guestID, fullName, email, passwordHash, phoneNumber, roomBooked);
             }
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error fetching specific guest: " + e.getMessage());
@@ -82,7 +84,7 @@ public class GuestDAO {
     }
     
     public void updateGuest(Guest guest) throws SQLException, ClassNotFoundException {
-        String query = "UPDATE guests SET fullName = ?, email = ?, passwordHash = ?, phoneNumber = ? WHERE guestID = ?";
+        String query = "UPDATE guests SET fullName = ?, email = ?, passwordHash = ?, phoneNumber = ?, roomBooked = ? WHERE guestID = ?";
 
         try (Connection conn = DBSupport.establishConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -91,8 +93,9 @@ public class GuestDAO {
             pstmt.setString(2, guest.getEmail());
             pstmt.setString(3, guest.getPasswordHash());
             pstmt.setString(4, guest.getPhoneNumber());
-            pstmt.setString(5, guest.getGuestID());
-
+            pstmt.setString(5, guest.getRoomBooked());
+            pstmt.setString(6, guest.getGuestID());
+            
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error updating guest: " + e.getMessage());

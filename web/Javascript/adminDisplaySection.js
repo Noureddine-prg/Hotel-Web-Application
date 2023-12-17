@@ -24,10 +24,22 @@ async function fetchEmployeeData(sectionId) {
         try {
             const result = await fetch('employee', options);
             console.log(result);
-            // Additional logic to handle the fetched data
         } catch (error) {
             console.error('Error fetching data:', error);
-            // Error handling logic
+        }
+}
+
+async function fetchGuestData(sectionId) {
+        const options = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json;' },
+        };
+
+        try {
+            const result = await fetch('guest', options);
+            console.log(result);
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
 }
 
@@ -37,4 +49,5 @@ async function fetchEmployeeData(sectionId) {
 function showSection(sectionId) {
     fetchEmployeeData(sectionId);
     updateUI(sectionId);
+    fetchGuestData(sectionId);
 }

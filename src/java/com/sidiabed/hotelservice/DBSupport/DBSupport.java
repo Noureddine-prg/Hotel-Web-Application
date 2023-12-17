@@ -40,7 +40,4 @@ public class DBSupport {
         return rs;    
         
     }
-    
-
-    
 }

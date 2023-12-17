@@ -22,7 +22,6 @@
                     <a href="adminpanel.jsp" class="">Admin Panel</a>
                 </li>
                 <li>Book Room</li>
-                <li>Cart</li>
                 <li>
                     <a href="logout" class="logout">Logout</a>
                 </li>
