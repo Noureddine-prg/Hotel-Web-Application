@@ -8,5 +8,9 @@ public class DeluxeRoom extends Room{
         super(GenerateRoomNumber.generate(RoomType.DELUXE),RoomType.DELUXE);
         
     }
-
+    public DeluxeRoom(String roomNumber){
+        super(roomNumber,RoomType.DELUXE);
+        
+    }
+    
 }

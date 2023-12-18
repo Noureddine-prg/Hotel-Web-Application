@@ -4,9 +4,6 @@ import com.sidiabed.hotelservice.Enum.HotelJob;
 import com.sidiabed.hotelservice.Servlet.EmployeeServlet;
 import com.sidiabed.hotelservice.Utility.GenerateUserID;
 
-
-
-
 public class Employee extends User {
 
     private String employeeID;

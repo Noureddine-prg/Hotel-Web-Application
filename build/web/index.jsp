@@ -17,28 +17,23 @@
         <div class="navbar">
             <div class="logo">Hotel</div>
             <ul class="navbar_links">
-                <li> Home </li>
-                <li>
-                    <a href="adminpanel.jsp" class="">Admin Panel</a>
+                <li>                    
+                    <a href="index.jsp">Home</a>                   
                 </li>
-                <li>Book Room</li>
+                
                 <li>
-                    <a href="logout" class="logout">Logout</a>
+                    <a href="adminpanel.jsp">Admin Panel</a>
+                </li>
+                <li>
+                    <a href="logout">Logout</a>
                 </li>
             </ul>
         </div>
         
         <div class="hero">
-            <h1>Welcome, <span id="username"></span><%= session.getAttribute("name")%></h1>
-            <p>Discover your stay at our hotel.</p>
+            <h1>Welcome, <span id="username"><%= session.getAttribute("name") %></span></h1>
+            <p>Discover your stay at our hotel</p>
         </div>
-
-        
-        <div class="footer">
-            <p>&copy; 2023 Hotel. All rights reserved.</p>
-        </div>
-</body>
+  
+    </body>
 </html>
-
-
-

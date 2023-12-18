@@ -1,6 +1,5 @@
 package com.sidiabed.hotelservice.Servlet;
 
-
 import com.sidiabed.hotelservice.Utility.PasswordHash;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -14,7 +13,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet{
@@ -56,7 +54,6 @@ public class LoginServlet extends HttpServlet{
                 dispatcher = request.getRequestDispatcher("login.jsp");
                 dispatcher.forward(request, response); 
             }
-
             
         }catch (Exception e) {
             e.printStackTrace();

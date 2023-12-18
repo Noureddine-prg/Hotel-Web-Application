@@ -9,4 +9,8 @@ public class StandardRoom extends Room {
         super(GenerateRoomNumber.generate(RoomType.STANDARD),RoomType.STANDARD);
     }
     
+    public StandardRoom(String roomNumber) {
+        super(roomNumber, RoomType.STANDARD);
+    }
+    
 }

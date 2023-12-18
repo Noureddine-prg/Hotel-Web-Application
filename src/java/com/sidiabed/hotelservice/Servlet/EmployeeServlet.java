@@ -5,7 +5,6 @@ import com.sidiabed.hotelservice.Dao.EmployeeDAO;
 import com.sidiabed.hotelservice.Factories.UserFactory;
 import com.sidiabed.hotelservice.Users.Employee;
 import com.sidiabed.hotelservice.Utility.PasswordHash;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -106,13 +105,12 @@ public class EmployeeServlet extends HttpServlet {
                 
                 break;
             case "/employee-get":
-                System.out.println("We are now grabbing employee");
 
                 String employeeId = request.getParameter("employeeId");
                 
                 try {
                     Employee employee = employeeDAO.getSpecificEmployee(employeeId);
-                    request.setAttribute("employeeToEdit", employee);
+                    request.getSession().setAttribute("employeeToEdit", employee);
                     response.sendRedirect("editEmployee.jsp");
                 } catch (SQLException ex) {
                     Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -120,8 +118,6 @@ public class EmployeeServlet extends HttpServlet {
                     Logger.getLogger(EmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             
-
-                
                 break;
 
             }

@@ -9,4 +9,7 @@ public class PresidentialSuite extends Room {
         super(GenerateRoomNumber.generate(RoomType.PRESIDENTIAL_SUITE),RoomType.PRESIDENTIAL_SUITE);
     }    
     
+    public PresidentialSuite(String roomNumber) {
+        super(roomNumber, RoomType.PRESIDENTIAL_SUITE);
+    }
 }

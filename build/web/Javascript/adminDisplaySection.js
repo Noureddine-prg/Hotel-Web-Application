@@ -44,10 +44,25 @@ async function fetchGuestData(sectionId) {
 }
 
 
+async function fetchRoomData(sectionId) {
+        const options = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json;' },
+        };
+
+        try {
+            const result = await fetch('room', options);
+            console.log(result);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+}
+
 
 
 function showSection(sectionId) {
     fetchEmployeeData(sectionId);
     updateUI(sectionId);
     fetchGuestData(sectionId);
+    fetchRoomData(sectionId);
 }

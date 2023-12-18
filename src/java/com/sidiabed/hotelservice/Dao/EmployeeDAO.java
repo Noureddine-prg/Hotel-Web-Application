@@ -117,13 +117,11 @@ public class EmployeeDAO {
             pstmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error updating employee: " + e.getMessage());
-            // It's usually a good practice to rethrow the exception or handle it appropriately
             throw e;
         }
     }
     
 
-    
     public void deleteEmployee(String employeeID) throws SQLException, ClassNotFoundException{
         String sql = "DELETE FROM employees WHERE employeeID = ?";
         try (Connection conn = DBSupport.establishConnection();
